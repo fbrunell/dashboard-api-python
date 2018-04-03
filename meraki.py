@@ -966,6 +966,10 @@ def __returnhandler(statuscode, returntext, objtype, suppressprint):
         if suppressprint is False:
             print('Resource Not Found')
         return returntext
+    elif str(statuscode) == '429' and validreturn:
+        if suppressprint is False:
+            print('API rate limit exceeded for organization')
+        return None
     elif str(statuscode) == '500':
         if suppressprint is False:
             print('HTTP 500 - Server Error')
